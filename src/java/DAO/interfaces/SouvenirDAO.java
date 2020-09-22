@@ -7,7 +7,7 @@ public interface SouvenirDAO {
 
     void insertSouvenir(Souvenir souvenir);
 
-    void updateSouvenir(Souvenir souvenir);
+    boolean updateSouvenir(Souvenir souvenir);
 
     Souvenir selectSouvenir(int id);
 

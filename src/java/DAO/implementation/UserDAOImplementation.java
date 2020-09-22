@@ -4,6 +4,7 @@ import java.DAO.interfaces.UserDAO;
 import java.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.utilities.DatabaseUtility;
@@ -30,13 +31,38 @@ public class UserDAOImplementation implements UserDAO {
     }
 
     @Override
-    public void updateUser(User user) {
-
+    public boolean updateUser(User user) {
+        boolean rowUpdated = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setInt(3, user.getId());
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowUpdated;
     }
 
     @Override
     public User selectUser(int id) {
-
+        User user = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                user = new User(id, username, password);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return user;
     }
 
     @Override

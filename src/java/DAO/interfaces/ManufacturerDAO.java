@@ -8,7 +8,7 @@ public interface ManufacturerDAO {
 
     void insertManufacturer(Manufacturer manufacturer);
 
-    void updateManufacturer(Manufacturer manufacturer);
+    boolean updateManufacturer(Manufacturer manufacturer);
 
     Manufacturer selectManufacturer(int id);
 
