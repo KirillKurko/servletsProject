@@ -1,6 +1,5 @@
 package java.DAO.implementation;
 
-import javax.xml.crypto.Data;
 import java.DAO.interfaces.ManufacturerDAO;
 import java.model.Manufacturer;
 import java.sql.Connection;
@@ -89,6 +88,7 @@ public class ManufacturerDAOImplementation implements ManufacturerDAO {
         return manufacturers;
     }
 
+    //TODO implement this and check sql query
     @Override
     public List<Manufacturer> selectManufacturersBySouvenirsDate(Calendar date) {
         return null;
@@ -108,6 +108,7 @@ public class ManufacturerDAOImplementation implements ManufacturerDAO {
         return rowDeleted;
     }
 
+    //TODO think about to remove this method to souvenir DAO
     @Override
     public void deleteManufacturerSouvenirs(int id) {
         try (Connection connection = DatabaseUtility.getConnection();
