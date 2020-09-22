@@ -1,6 +1,5 @@
 package java.DAO.implementation;
 
-import javax.xml.crypto.Data;
 import java.DAO.interfaces.ManufacturerDAO;
 import java.model.Manufacturer;
 import java.sql.Connection;
@@ -96,7 +95,16 @@ public class ManufacturerDAOImplementation implements ManufacturerDAO {
 
     @Override
     public boolean deleteManufacturer(int id) {
-        return false;
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_MANUFACTURER)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
     }
 
     @Override
