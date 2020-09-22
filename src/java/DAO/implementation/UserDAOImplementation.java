@@ -87,6 +87,15 @@ public class UserDAOImplementation implements UserDAO {
 
     @Override
     public boolean deleteUser(int id) {
-
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
     }
 }
