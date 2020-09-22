@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.utilities.DatabaseUtility;
 
@@ -67,7 +68,21 @@ public class UserDAOImplementation implements UserDAO {
 
     @Override
     public List<User> selectAllUsers() {
-
+        List<User> users = new ArrayList<>();
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                users.add(new User(id, username, password));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return users;
     }
 
     @Override
