@@ -5,6 +5,7 @@ import java.DAO.interfaces.ManufacturerDAO;
 import java.model.Manufacturer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
@@ -51,7 +52,21 @@ public class ManufacturerDAOImplementation implements ManufacturerDAO {
 
     @Override
     public Manufacturer selectManufacturer(int id) {
-        return null;
+        Manufacturer manufacturer = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_MANUFACTURER)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String country = resultSet.getString("country");
+                manufacturer = new Manufacturer(id, name, country);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return manufacturer;
     }
 
     @Override
