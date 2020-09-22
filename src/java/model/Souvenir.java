@@ -9,20 +9,23 @@ public class Souvenir {
     private String manufacturerEmail;
     private Calendar manufacturingDate;
     private double price;
+    private int manufacturerID;
 
-    public Souvenir(int id, String name, String manufacturerEmail, Calendar manufacturingDate, double price) {
+    public Souvenir(int id, String name, String manufacturerEmail, Calendar manufacturingDate, double price, int manufacturerID) {
         this.id = id;
         this.name = name;
         this.manufacturerEmail = manufacturerEmail;
         this.manufacturingDate = manufacturingDate;
         this.price = price;
+        this.manufacturerID = manufacturerID;
     }
 
-    public Souvenir(String name, String manufacturerEmail, Calendar manufacturingDate, double price) {
+    public Souvenir(String name, String manufacturerEmail, Calendar manufacturingDate, double price, int manufacturerID) {
         this.name = name;
         this.manufacturerEmail = manufacturerEmail;
         this.manufacturingDate = manufacturingDate;
         this.price = price;
+        this.manufacturerID = manufacturerID;
     }
 
     public int getId() {
@@ -45,6 +48,10 @@ public class Souvenir {
         return price;
     }
 
+    public int getManufacturerID() {
+        return manufacturerID;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -63,5 +70,9 @@ public class Souvenir {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public void setManufacturerID(int manufacturerID) {
+        this.manufacturerID = manufacturerID;
     }
 }
