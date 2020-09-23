@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface UserDAO {
 
-    void insertUser(User user);
+    boolean insertUser(User user);
 
     boolean updateUser(User user);
 

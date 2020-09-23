@@ -3,13 +3,13 @@
 
 <html>
     <head>
-        <title>Main page</title>
+        <title>Registration page</title>
          <link rel="stylesheet" href="registrationPageStyle.css">
     </head>
     <body>
         <div class="login-page">
           <div class="form">
-            <form class="login-form">
+            <form class="login-form" action="/RegisterServlet" method="post">
               <input type="text" placeholder="name"/>
               <input type="password" placeholder="password"/>
               <input type="text" placeholder="email address"/>

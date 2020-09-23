@@ -19,17 +19,20 @@ public class UserDAOImplementation implements UserDAO {
     private static final String DELETE_USER = "DELETE FROM User WHERE id = ?;";
 
     @Override
-    public void insertUser(User user) {
+    public boolean insertUser(User user) {
+        boolean inserted = false;
         try (Connection connection = DatabaseUtility.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPassword());
             preparedStatement.executeUpdate();
+            inserted = true;
         }
         catch (SQLException exception) {
             exception.printStackTrace();
         }
+        return inserted;
     }
 
     @Override

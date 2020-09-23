@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        <title>Main page</title>
+        <title>Login page</title>
          <link rel="stylesheet" href="registrationPageStyle.css">
     </head>
     <body>
@@ -18,5 +18,4 @@
           </div>
         </div>
     </body>
-    <script src="registrationAnimation.js"></script>
 </html>
