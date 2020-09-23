@@ -12,8 +12,8 @@ import java.utilities.DatabaseUtility;
 
 public class UserDAOImplementation implements UserDAO {
 
-    private static final String INSERT_USER = "INSERT INTO User(username, password) VALUES (?, ?);";
-    private static final String UPDATE_USER = "UPDATE User SET username = ?, password = ? WHERE id = ?;";
+    private static final String INSERT_USER = "INSERT INTO User(username, email, password) VALUES (?, ?, ?);";
+    private static final String UPDATE_USER = "UPDATE User SET username = ?, email = ?, password = ? WHERE id = ?;";
     private static final String SELECT_USER = "SELECT * FROM User WHERE id = ?;";
     private static final String SELECT_ALL_USERS = "SELECT * FROM User;";
     private static final String DELETE_USER = "DELETE FROM User WHERE id = ?;";
@@ -23,7 +23,8 @@ public class UserDAOImplementation implements UserDAO {
         try (Connection connection = DatabaseUtility.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
             preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassword());
             preparedStatement.executeUpdate();
         }
         catch (SQLException exception) {
@@ -37,8 +38,9 @@ public class UserDAOImplementation implements UserDAO {
         try (Connection connection = DatabaseUtility.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
             preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setInt(3, user.getId());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setInt(4, user.getId());
             rowUpdated = preparedStatement.executeUpdate() > 0;
         }
         catch (SQLException exception) {
@@ -56,8 +58,9 @@ public class UserDAOImplementation implements UserDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String username = resultSet.getString("username");
+                String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                user = new User(id, username, password);
+                user = new User(id, username, email, password);
             }
         }
         catch (SQLException exception) {
@@ -75,8 +78,9 @@ public class UserDAOImplementation implements UserDAO {
             while (resultSet.next()) {
                 int id = resultSet.getInt("ID");
                 String username = resultSet.getString("username");
+                String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                users.add(new User(id, username, password));
+                users.add(new User(id, username, email, password));
             }
         }
         catch (SQLException exception) {
