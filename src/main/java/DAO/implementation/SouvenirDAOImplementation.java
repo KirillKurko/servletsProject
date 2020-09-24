@@ -141,7 +141,23 @@ public class SouvenirDAOImplementation implements SouvenirDAO {
 
     @Override
     public List<Souvenir> selectSouvenirsByPrice(double price) {
-        return null;
+        List<Souvenir> souvenirs = new ArrayList<>();
+        try (Connection connection = DatabaseUtility.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SOUVENIRS_BY_COUNTRY)) {
+            preparedStatement.setDouble(1, price);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String name = resultSet.getString("name");
+                String manufacturerEmail = resultSet.getString("manufacturerEmail");
+                int manufacturerID = resultSet.getInt("manufacturerID");
+                souvenirs.add(new Souvenir(id, name, manufacturerEmail, price, manufacturerID));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return souvenirs;
     }
 
     @Override
