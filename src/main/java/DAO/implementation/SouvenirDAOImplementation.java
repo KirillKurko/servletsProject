@@ -3,10 +3,13 @@ package DAO.implementation;
 import DAO.interfaces.SouvenirDAO;
 import model.Souvenir;
 import utilities.DatabaseUtility;
+
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SouvenirDAOImplementation implements SouvenirDAO {
@@ -75,7 +78,23 @@ public class SouvenirDAOImplementation implements SouvenirDAO {
 
     @Override
     public List<Souvenir> selectAllSouvenirs() {
-        return null;
+        List<Souvenir> souvenirs = new ArrayList<>();
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_SOUVENIRS)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String name = resultSet.getString("name");
+                String manufacturerEmail = resultSet.getString("manufacturerEmail");
+                double price = resultSet.getDouble("price");
+                int manufacturerID = resultSet.getInt("manufacturerID");
+                souvenirs.add(new Souvenir(id, name, manufacturerEmail, price, manufacturerID));
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return souvenirs;
     }
 
     @Override
