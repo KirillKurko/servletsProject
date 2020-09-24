@@ -14,7 +14,7 @@ public interface SouvenirDAO {
 
     List<Souvenir> selectAllSouvenirs();
 
-    List<Souvenir> selectSouvenirsByCountry();
+    List<Souvenir> selectSouvenirsByCountry(String country);
 
     List<Souvenir> selectSouvenirsByManufacturerName(String manufacturerName);
 
