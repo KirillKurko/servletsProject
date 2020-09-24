@@ -5,6 +5,7 @@ import model.Souvenir;
 import utilities.DatabaseUtility;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -54,7 +55,22 @@ public class SouvenirDAOImplementation implements SouvenirDAO {
 
     @Override
     public Souvenir selectSouvenir(int id) {
-        return null;
+        Souvenir souvenir = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SOUVENIR)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String manufacturerEmail = resultSet.getString("manufacturerEmail");
+                double price = resultSet.getDouble("price");
+                int manufacturerID = resultSet.getInt("manufacturerID");
+                souvenir = new Souvenir(id, name, manufacturerEmail, price, manufacturerID);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return souvenir;
     }
 
     @Override
