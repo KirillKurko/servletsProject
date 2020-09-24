@@ -121,7 +121,7 @@ public class SouvenirDAOImplementation implements SouvenirDAO {
     public List<Souvenir> selectSouvenirsByManufacturerName(String manufacturerName) {
         List<Souvenir> souvenirs = new ArrayList<>();
         try (Connection connection = DatabaseUtility.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SOUVENIRS_BY_COUNTRY)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SOUVENIRS_BY_MANUFACTURER_NAME)) {
             preparedStatement.setString(1, manufacturerName);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -143,7 +143,7 @@ public class SouvenirDAOImplementation implements SouvenirDAO {
     public List<Souvenir> selectSouvenirsByPrice(double price) {
         List<Souvenir> souvenirs = new ArrayList<>();
         try (Connection connection = DatabaseUtility.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SOUVENIRS_BY_COUNTRY)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SOUVENIRS_BY_PRICE)) {
             preparedStatement.setDouble(1, price);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -162,6 +162,15 @@ public class SouvenirDAOImplementation implements SouvenirDAO {
 
     @Override
     public boolean deleteSouvenir(int id) {
-        return false;
+        boolean rowDeleted = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SOUVENIR)) {
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowDeleted;
     }
 }
