@@ -36,7 +36,20 @@ public class SouvenirDAOImplementation implements SouvenirDAO {
 
     @Override
     public boolean updateSouvenir(Souvenir souvenir) {
-        return false;
+        boolean rowUpdated = false;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SOUVENIR)) {
+            preparedStatement.setString(1, souvenir.getName());
+            preparedStatement.setString(2, souvenir.getManufacturerEmail());
+            preparedStatement.setDouble(3, souvenir.getPrice());
+            preparedStatement.setInt(4, souvenir.getManufacturerID());
+            preparedStatement.setInt(5, souvenir.getId());
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return rowUpdated;
     }
 
     @Override
