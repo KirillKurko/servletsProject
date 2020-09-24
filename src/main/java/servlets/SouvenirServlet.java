@@ -9,10 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class SouvenirServlet extends HttpServlet {
@@ -61,10 +57,9 @@ public class SouvenirServlet extends HttpServlet {
     private void insertSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String manufacturerEmail = request.getParameter("manufacturerEmail");
-        Calendar manufacturingDate = parseDateFromString(request.getParameter("manufacturingDate"));
         float price = Float.parseFloat(request.getParameter("price"));
         int manufacturerID = Integer.parseInt(request.getParameter("manufacturerID"));
-        Souvenir souvenir = new Souvenir(name, manufacturerEmail, manufacturingDate, price, manufacturerID);
+        Souvenir souvenir = new Souvenir(name, manufacturerEmail, price, manufacturerID);
         souvenirDAO.insertSouvenir(souvenir);
         response.sendRedirect("list");
     }
@@ -87,25 +82,11 @@ public class SouvenirServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String manufacturerEmail = request.getParameter("manufacturerEmail");
-        Calendar manufacturingDate = parseDateFromString(request.getParameter("manufacturingDate"));
         float price = Float.parseFloat(request.getParameter("price"));
         int manufacturerID = Integer.parseInt(request.getParameter("manufacturerID"));
-        Souvenir souvenir = new Souvenir(id, name, manufacturerEmail, manufacturingDate, price, manufacturerID);
+        Souvenir souvenir = new Souvenir(id, name, manufacturerEmail, price, manufacturerID);
         souvenirDAO.updateSouvenir(souvenir);
         response.sendRedirect("list");
-    }
-
-    private Calendar parseDateFromString(String dateStringRepresentation) {
-        Calendar manufacturingDate = Calendar.getInstance();
-        try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            Date date = simpleDateFormat.parse(dateStringRepresentation);
-            manufacturingDate.setTime(date);
-        }
-        catch (ParseException exception) {
-            exception.printStackTrace();
-        }
-        return manufacturingDate;
     }
 
     private void selectAllSouvenirs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
