@@ -1,14 +1,14 @@
-package java.DAO.implementation;
+package DAO.implementation;
 
-import java.DAO.interfaces.UserDAO;
-import java.model.User;
+import DAO.interfaces.UserDAO;
+import model.User;
+import utilities.DatabaseUtility;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.utilities.DatabaseUtility;
 
 public class UserDAOImplementation implements UserDAO {
 

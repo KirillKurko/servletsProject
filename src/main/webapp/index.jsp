@@ -4,6 +4,7 @@
 <html>
     <head>
         <title>Main page</title>
+        <link rel="stylesheet" href="registrationPageStyle.css">
     </head>
         <body>
             <h2>Hello World!</h2>

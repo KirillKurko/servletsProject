@@ -1,7 +1,9 @@
-package java.DAO.implementation;
+package DAO.implementation;
 
-import java.DAO.interfaces.ManufacturerDAO;
-import java.model.Manufacturer;
+import DAO.interfaces.ManufacturerDAO;
+import model.Manufacturer;
+import utilities.DatabaseUtility;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.utilities.DatabaseUtility;
 
 public class ManufacturerDAOImplementation implements ManufacturerDAO {
 

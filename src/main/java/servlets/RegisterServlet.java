@@ -1,25 +1,25 @@
-package java.web.servlets;
+package servlets;
 
+import DAO.implementation.UserDAOImplementation;
+import DAO.interfaces.UserDAO;
+import model.User;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.DAO.implementation.UserDAOImplementation;
-import java.DAO.interfaces.UserDAO;
 import java.io.IOException;
-import java.model.User;
 
 public class RegisterServlet extends HttpServlet {
 
     private UserDAO userDAO = new UserDAOImplementation();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        System.out.println("name" + name + " email: " + email + " password: " + password);
         User user = new User(name, email, password);
         if (userDAO.insertUser(user)) {
             response.sendRedirect("index.jsp");
@@ -30,5 +30,17 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("Registration error", errorMessage);
             response.sendRedirect("registration.jsp");
         }
+    }
+
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException {
+//        res.setContentType("text/html");//setting the content type
+//        PrintWriter pw=res.getWriter();//get the stream to write the data
+//
+//
+//        pw.println("<html><body>");
+//        pw.println("Welcome to servlet");
+//        pw.println("</body></html>");
+//
+//        pw.close();
     }
 }

@@ -1,6 +1,7 @@
-package java.DAO.interfaces;
+package DAO.interfaces;
 
-import java.model.Manufacturer;
+import model.Manufacturer;
+
 import java.util.Calendar;
 import java.util.List;
 

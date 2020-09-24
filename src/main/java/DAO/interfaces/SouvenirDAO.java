@@ -1,6 +1,7 @@
-package java.DAO.interfaces;
+package DAO.interfaces;
 
-import java.model.Souvenir;
+import model.Souvenir;
+
 import java.util.List;
 
 public interface SouvenirDAO {

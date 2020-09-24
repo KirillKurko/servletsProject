@@ -7,15 +7,14 @@
 
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
-    <display-name>RegisterServlet</display-name>
-    <servlet-class>web.servlets.RegisterServlet</servlet-class>
+    <servlet-class>servlets.RegisterServlet</servlet-class>
     <!--Un-comment  below line if you want to instantiate and initialize the servlet during the servlet-container(tomcat) startup-->
     <!-- <load-on-startup>1</load-on-startup> -->
   </servlet>
 
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/RegisterServlet</url-pattern>
+    <url-pattern>/registerServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>
