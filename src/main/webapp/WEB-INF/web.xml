@@ -35,5 +35,15 @@
         <url-pattern>/logoutServlet</url-pattern>
     </servlet-mapping>
 
+  <servlet>
+    <servlet-name>SouvenirServlet</servlet-name>
+    <servlet-class>servlets.SouvenirServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SouvenirServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>
