@@ -11,6 +11,8 @@ public interface UserDAO {
 
     User selectUser(int id);
 
+    User selectUser(String name, String password);
+
     List<User> selectAllUsers();
 
     boolean deleteUser(int id);

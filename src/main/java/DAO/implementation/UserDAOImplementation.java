@@ -15,6 +15,7 @@ public class UserDAOImplementation implements UserDAO {
     private static final String INSERT_USER = "INSERT INTO User(username, email, password) VALUES (?, ?, ?);";
     private static final String UPDATE_USER = "UPDATE User SET username = ?, email = ?, password = ? WHERE id = ?;";
     private static final String SELECT_USER = "SELECT * FROM User WHERE id = ?;";
+    private static final String SELECT_BY_NAME_AND_PASSWORD = "SELECT * FROM User WHERE username = ? AND password = ?;";
     private static final String SELECT_ALL_USERS = "SELECT * FROM User;";
     private static final String DELETE_USER = "DELETE FROM User WHERE id = ?;";
 
@@ -63,6 +64,26 @@ public class UserDAOImplementation implements UserDAO {
                 String username = resultSet.getString("username");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
+                user = new User(id, username, email, password);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public User selectUser(String username, String password) {
+        User user = null;
+        try (Connection connection = DatabaseUtility.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_NAME_AND_PASSWORD)) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String email = resultSet.getString("email");
                 user = new User(id, username, email, password);
             }
         }

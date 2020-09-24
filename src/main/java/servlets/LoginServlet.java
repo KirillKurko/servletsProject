@@ -9,24 +9,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class RegisterServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     private UserDAO userDAO = new UserDAOImplementation();
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
-        String email = request.getParameter("email");
         String password = request.getParameter("password");
-        User user = new User(name, email, password);
-        if (userDAO.insertUser(user)) {
+        User user = userDAO.selectUser(name, password);
+        if (user != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("Authorized user", user);
             response.sendRedirect("index.jsp");
         }
         else {
-            String errorMessage = "User Available";
+            String errorMessage = "User not found";
             HttpSession session = request.getSession();
-            session.setAttribute("Registration error", errorMessage);
-            response.sendRedirect("registration.jsp");
+            session.setAttribute("Login error", errorMessage);
+            response.sendRedirect("login.jsp");
         }
     }
 }

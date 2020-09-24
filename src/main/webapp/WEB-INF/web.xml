@@ -8,13 +8,32 @@
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>servlets.RegisterServlet</servlet-class>
-    <!--Un-comment  below line if you want to instantiate and initialize the servlet during the servlet-container(tomcat) startup-->
-    <!-- <load-on-startup>1</load-on-startup> -->
   </servlet>
 
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/registerServlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>servlets.LoginServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/loginServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>servlets.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logoutServlet</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
