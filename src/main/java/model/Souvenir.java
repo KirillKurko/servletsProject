@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Calendar;
-
 public class Souvenir {
 
     private int id;

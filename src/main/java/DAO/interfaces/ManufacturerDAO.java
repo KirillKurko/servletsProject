@@ -15,8 +15,6 @@ public interface ManufacturerDAO {
 
     List<Manufacturer> selectAllManufacturers();
 
-    List<Manufacturer> selectManufacturersBySouvenirsDate(Calendar date);
-
     boolean deleteManufacturer(int id);
 
     void deleteManufacturerSouvenirs(int id);
