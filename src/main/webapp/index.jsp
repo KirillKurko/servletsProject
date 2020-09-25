@@ -11,5 +11,6 @@
             <a href="login.jsp">Login</a>
             <form action="logoutServlet" method="post"><button text="Logout"/></form>
             <a href="souvenirsList.jsp">souvenirs</a>
+            <a href="manufacturersList.jsp">manufacturers</a>
         </body>
 </html>

@@ -45,6 +45,16 @@
     <url-pattern>/souvenirServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ManufacturerServlet</servlet-name>
+    <servlet-class>servlets.ManufacturerServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ManufacturerServlet</servlet-name>
+    <url-pattern>/manufacturerServlet</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.htm</url-pattern>
