@@ -10,7 +10,7 @@
             <h2>Hello World!</h2>
             <a href="index.jsp">Login</a>
             <form action="logoutServlet" method="post"><button text="Logout"/></form>
-            <a href="souvenirsList.jsp">souvenirs</a>
-            <a href="manufacturersList.jsp">manufacturers</a>
+            <a href="souvenirs/souvenirsList.jsp">souvenirs</a>
+            <a href="manufacturers/manufacturersList.jsp">manufacturers</a>
         </body>
 </html>

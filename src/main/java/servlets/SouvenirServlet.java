@@ -27,14 +27,17 @@ public class SouvenirServlet extends HttpServlet {
         else if (request.getParameter("deleteSouvenirButton") != null) {
             response.sendRedirect("deleteSouvenirForm.jsp");
         }
+        else if (request.getParameter("editSouvenirButton") != null) {
+            response.sendRedirect("editSouvenirForm.jsp");
+        }
         else if (request.getParameter("createSouvenir") != null) {
             insertSouvenir(request, response);
         }
         else if (request.getParameter("deleteSouvenir") != null) {
             deleteSouvenir(request, response);
         }
-        else {
-
+        else if (request.getParameter("editSouvenir") != null) {
+            updateSouvenir(request, response);
         }
     }
 
@@ -54,15 +57,7 @@ public class SouvenirServlet extends HttpServlet {
         response.sendRedirect("souvenirsList.jsp");
     }
 
-    private void editSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Souvenir souvenir = souvenirDAO.selectSouvenir(id);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("addSouvenirForm.jsp");
-        request.setAttribute("souvenir", souvenir);
-        requestDispatcher.forward(request, response);
-    }
-
-    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void updateSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String manufacturerEmail = request.getParameter("manufacturerEmail");
@@ -70,7 +65,7 @@ public class SouvenirServlet extends HttpServlet {
         int manufacturerID = Integer.parseInt(request.getParameter("manufacturerID"));
         Souvenir souvenir = new Souvenir(id, name, manufacturerEmail, price, manufacturerID);
         souvenirDAO.updateSouvenir(souvenir);
-        response.sendRedirect("list");
+        response.sendRedirect("souvenirsList.jsp");
     }
 
     private void selectAllSouvenirs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

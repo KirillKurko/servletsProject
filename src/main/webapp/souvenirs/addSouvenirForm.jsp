@@ -4,7 +4,7 @@
 <html>
     <head>
         <title>AddSouvenir</title>
-        <link rel="stylesheet" href="resources/css/registrationPageStyle.css" type="text/css">
+        <link rel="stylesheet" href="/resources/css/registrationPageStyle.css" type="text/css">
     </head>
     <body>
         <div class="login-page">

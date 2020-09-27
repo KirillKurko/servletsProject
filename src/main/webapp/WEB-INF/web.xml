@@ -45,6 +45,11 @@
     <url-pattern>/souvenirServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>SouvenirServlet</servlet-name>
+    <url-pattern>/souvenirs/souvenirServlet</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <servlet-name>ManufacturerServlet</servlet-name>
     <servlet-class>servlets.ManufacturerServlet</servlet-class>
@@ -53,6 +58,11 @@
   <servlet-mapping>
     <servlet-name>ManufacturerServlet</servlet-name>
     <url-pattern>/manufacturerServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ManufacturerServlet</servlet-name>
+    <url-pattern>/manufacturers/manufacturerServlet</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
