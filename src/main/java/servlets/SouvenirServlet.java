@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 public class SouvenirServlet extends HttpServlet {
 
@@ -21,13 +21,13 @@ public class SouvenirServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doGet(request, response);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getParameter("createNewSouvenir") != null) {
+        if (request.getParameter("addSouvenirButton") != null) {
+            response.sendRedirect("addSouvenirForm.jsp");
+        }
+        else if (request.getParameter("createNewSouvenir") != null) {
             insertSouvenir(request, response);
+        }
+        else {
         }
     }
 
@@ -67,7 +67,7 @@ public class SouvenirServlet extends HttpServlet {
     }
 
     private void selectAllSouvenirs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Souvenir> souvenirs = souvenirDAO.selectAllSouvenirs();
+        ArrayList<Souvenir> souvenirs = new ArrayList<>(souvenirDAO.selectAllSouvenirs());
         request.setAttribute("souvenirs", souvenirs);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("souvenirsList.jsp");
         requestDispatcher.forward(request, response);

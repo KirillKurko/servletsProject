@@ -21,13 +21,13 @@ public class LoginServlet extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("Authorized user", user);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("main.jsp");
         }
         else {
             String errorMessage = "User not found";
             HttpSession session = request.getSession();
             session.setAttribute("Login error", errorMessage);
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("index.jsp");
         }
     }
 }

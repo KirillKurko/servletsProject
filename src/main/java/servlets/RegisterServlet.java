@@ -20,7 +20,7 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = new User(name, email, password);
         if (userDAO.insertUser(user)) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("main.jsp");
         }
         else {
             String errorMessage = "User Available";

@@ -1,76 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Souvenir" %>
+<%@ page import="DAO.interfaces.SouvenirDAO" %>
+<%@ page import="DAO.implementation.SouvenirDAOImplementation" %>
 <html>
-<head>
-<title>User Management Application</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-</head>
-<body>
-
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: tomato">
-			<div>
-				<a href="https://www.javaguides.net" class="navbar-brand"> User
-					Management App </a>
-			</div>
-
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
-					class="nav-link">Users</a></li>
-			</ul>
-		</nav>
-	</header>
-	<br>
-
-	<div class="row">
-		<!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
-
-		<div class="container">
-			<h3 class="text-center">List of Users</h3>
-			<hr>
-			<div class="container text-left">
-
-                <
-				<a href="addSouvenirForm.jsp" class="btn btn-success">Add
-					New User</a>
-			</div>
-			<br>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Manufacturer Email</th>
-						<th>Price</th>
-						<th>Manufacturer ID</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!--   for (Todo todo: todos) {  -->
-					<c:forEach var="souvenir" items="${souvenirs}">
-
-						<tr>
-							<td><c:out value="${souvenir.id}" /></td>
-							<td><c:out value="${souvenir.name}" /></td>
-							<td><c:out value="${souvenir.manufacturerEmail}" /></td>
-							<td><c:out value="${souvenir.price}" /></td>
-							<td><c:out value="${souvenir.manufacturerID}" /></td>
-							<td><a href="edit?id=<c:out value='${souvenir.id}' />">Edit</a>
-								&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href="delete?id=<c:out value='${souvenir.id}' />">Delete</a></td>
-						</tr>
-					</c:forEach>
-					<!-- } -->
-				</tbody>
-
-			</table>
-		</div>
-	</div>
-</body>
+    <head>
+        <title>Souvenirs</title>
+        <link rel="stylesheet" href="resources/css/registrationPageStyle.css" type="text/css">
+    </head>
+    <body>
+         <div class="login-page">
+             <div class="form">
+                      <form class="login-form" action="souvenirServlet" method="post">
+                      <button name="addSouvenirButton">Add</button>
+                      <button name="deleteSouvenirButton">Delete</button>
+                      <button name="searchSouvenirButton">Search</button>
+                      <button name="editSouvenirButton">Edit</button>
+                  </form>
+             </div>
+         </div>
+         <div class="container">
+            <table>
+                <thead>
+                     <tr>
+                         <th>ID</th>
+                         <th>Name</th>
+                         <th>Manufacturer Email</th>
+                         <th>Price</th>
+                         <th>Manufacturer ID</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <% SouvenirDAO souvenirDAO = new SouvenirDAOImplementation();
+                      List<Souvenir> souvenirs = souvenirDAO.selectAllSouvenirs();
+                      for (Souvenir souvenir: souvenirs) { %>
+                      <tr>
+                          <td><%=souvenir.getId()%></td>
+                          <td><%=souvenir.getName()%></td>
+                          <td><%=souvenir.getManufacturerEmail()%></td>
+                          <td><%=souvenir.getPrice()%></td>
+                          <td><%=souvenir.getManufacturerID()%></td>
+                       </tr>
+                       <%}%>
+                   </tbody>
+              </table>
+          </div>
+    </body>
 </html>

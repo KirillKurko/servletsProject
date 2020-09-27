@@ -38,7 +38,7 @@
 				</thead>
 				<tbody>
 					<!--   for (Todo todo: todos) {  -->
-					<c:forEach var="souvenir" items="${souvenirs}">
+					<c:forEach items="${souvenirs}" var="souvenir" varStatus="status">
 
 						<tr>
 							<td><c:out value="${souvenir.id}" /></td>

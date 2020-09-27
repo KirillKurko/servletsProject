@@ -3,14 +3,19 @@
 
 <html>
     <head>
-        <title>Main page</title>
-        <link rel="stylesheet" href="resources/css/registrationPageStyle.css" type="text/css">
+        <title>Login page</title>
+         <link rel="stylesheet" href="resources/css/registrationPageStyle.css" type="text/css">
     </head>
-        <body>
-            <h2>Hello World!</h2>
-            <a href="login.jsp">Login</a>
-            <form action="logoutServlet" method="post"><button text="Logout"/></form>
-            <a href="souvenirsList.jsp">souvenirs</a>
-            <a href="manufacturersList.jsp">manufacturers</a>
-        </body>
+    <body>
+        <div class="login-page">
+          <div class="form">
+            <form class="login-form" action="loginServlet" method="post">
+              <input type="text" placeholder="username" name="name"/>
+              <input type="password" placeholder="password" name="password"/>
+              <button>login</button>
+              <p class="message">Not registered? <a href="registration.jsp">Create an account</a></p>
+            </form>
+          </div>
+        </div>
+    </body>
 </html>

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
     <head>
-        <title>User Management Application</title>
+        <title>AddSouvenir</title>
         <link rel="stylesheet" href="resources/css/registrationPageStyle.css" type="text/css">
     </head>
     <body>
