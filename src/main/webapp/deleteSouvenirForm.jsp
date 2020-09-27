@@ -10,11 +10,8 @@
         <div class="login-page">
             <div class="form">
                 <form class="login-form" action="souvenirServlet" method="post">
-                     <input type="text" placeholder="name" name="name"/>
-                     <input type="text" placeholder="manufacturerEmail" name="manufacturerEmail"/>
-                     <input type="text" placeholder="price" name="price"/>
-                     <input type="text" placeholder="manufacturer id" name="manufacturerID"/>
-                     <button name="createSouvenir">create</button>
+                     <input type="text" placeholder="id" name="id"/>
+                     <button name="deleteSouvenir">delete</button>
                 </form>
               </div>
           </div>

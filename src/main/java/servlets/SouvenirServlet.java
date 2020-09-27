@@ -24,10 +24,17 @@ public class SouvenirServlet extends HttpServlet {
         if (request.getParameter("addSouvenirButton") != null) {
             response.sendRedirect("addSouvenirForm.jsp");
         }
-        else if (request.getParameter("createNewSouvenir") != null) {
+        else if (request.getParameter("deleteSouvenirButton") != null) {
+            response.sendRedirect("deleteSouvenirForm.jsp");
+        }
+        else if (request.getParameter("createSouvenir") != null) {
             insertSouvenir(request, response);
         }
+        else if (request.getParameter("deleteSouvenir") != null) {
+            deleteSouvenir(request, response);
+        }
         else {
+
         }
     }
 
