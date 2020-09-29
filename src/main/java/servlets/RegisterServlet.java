@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class RegisterServlet extends HttpServlet {
 
-    private UserDAO userDAO = new UserDAOImplementation();
+    private final UserDAO userDAO = new UserDAOImplementation();
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
