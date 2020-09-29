@@ -19,31 +19,29 @@
                   </form>
              </div>
          </div>
-         <div class="container">
-            <table>
-                <thead>
-                     <tr>
-                         <th>ID</th>
-                         <th>Name</th>
-                         <th>Manufacturer Email</th>
-                         <th>Price</th>
-                         <th>Manufacturer ID</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                      <% SouvenirDAO souvenirDAO = new SouvenirDAOImplementation();
-                      List<Souvenir> souvenirs = souvenirDAO.selectAllSouvenirs();
-                      for (Souvenir souvenir: souvenirs) { %>
-                      <tr>
-                          <td><%=souvenir.getId()%></td>
-                          <td><%=souvenir.getName()%></td>
-                          <td><%=souvenir.getManufacturerEmail()%></td>
-                          <td><%=souvenir.getPrice()%></td>
-                          <td><%=souvenir.getManufacturerID()%></td>
-                       </tr>
-                       <%}%>
-                   </tbody>
-              </table>
-          </div>
+         <table class="content-table">
+             <thead>
+             <tr>
+                 <th>ID</th>
+                 <th>Name</th>
+                 <th>Manufacturer Email</th>
+                 <th>Price</th>
+                 <th>Manufacturer ID</th>
+             </tr>
+             </thead>
+             <tbody>
+             <% SouvenirDAO souvenirDAO = new SouvenirDAOImplementation();
+                 List<Souvenir> souvenirs = souvenirDAO.selectAllSouvenirs();
+                 for (Souvenir souvenir: souvenirs) { %>
+             <tr>
+                 <td><%=souvenir.getId()%></td>
+                 <td><%=souvenir.getName()%></td>
+                 <td><%=souvenir.getManufacturerEmail()%></td>
+                 <td><%=souvenir.getPrice()%></td>
+                 <td><%=souvenir.getManufacturerID()%></td>
+             </tr>
+             <%}%>
+             </tbody>
+         </table>
     </body>
 </html>

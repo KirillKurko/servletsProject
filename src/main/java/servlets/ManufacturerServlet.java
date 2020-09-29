@@ -40,7 +40,7 @@ public class ManufacturerServlet extends HttpServlet {
         String country = request.getParameter("country");
         Manufacturer manufacturer = new Manufacturer(name, country);
         manufacturerDAO.insertManufacturer(manufacturer);
-        response.sendRedirect("manufacturers/manufacturersList.jsp");
+        response.sendRedirect("manufacturersList.jsp");
     }
 
 //    private void deleteSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

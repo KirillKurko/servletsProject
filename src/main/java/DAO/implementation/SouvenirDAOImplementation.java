@@ -13,7 +13,7 @@ import java.util.List;
 public class SouvenirDAOImplementation implements SouvenirDAO {
 
     private static final String INSERT_SOUVENIR = "INSERT INTO Souvenir(name, manufacturerEmail, price, manufacturerID) VALUES (?, ?, ?, ?);";
-    private static final String UPDATE_SOUVENIR = "UPDATE Souvenir SET name = ?, manufacturerEmail = ?, price = ? manufacturerID = ? WHERE id = ?;";
+    private static final String UPDATE_SOUVENIR = "UPDATE Souvenir SET name = ?, manufacturerEmail = ?, price = ?, manufacturerID = ? WHERE id = ?;";
     private static final String SELECT_SOUVENIR = "SELECT * FROM Souvenir WHERE id = ?;";
     private static final String SELECT_ALL_SOUVENIRS = "SELECT * FROM Souvenir;";
     private static final String SELECT_SOUVENIRS_BY_COUNTRY = "SELECT Souvenir.* FROM Souvenir INNER JOIN Manufacturer ON Souvenir.manufacturerID = Manufacturer.id WHERE Manufacturer.country = ?;";
