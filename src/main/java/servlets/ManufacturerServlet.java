@@ -37,6 +37,9 @@ public class ManufacturerServlet extends HttpServlet {
         else if (request.getParameter("createNewManufacturer") != null) {
             insertManufacturer(request, response);
         }
+        else if (request.getParameter("deleteManufacturer") != null) {
+            deleteManufacturer(request, response);
+        }
     }
 
     private void insertManufacturer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,11 +50,11 @@ public class ManufacturerServlet extends HttpServlet {
         response.sendRedirect("manufacturersList.jsp");
     }
 
-//    private void deleteSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        souvenirDAO.deleteSouvenir(id);
-//        response.sendRedirect("souvenirsList.jsp");
-//    }
+    private void deleteManufacturer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        manufacturerDAO.deleteManufacturer(id);
+        response.sendRedirect("manufacturersList.jsp");
+    }
 //
 //    private void editSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        int id = Integer.parseInt(request.getParameter("id"));
