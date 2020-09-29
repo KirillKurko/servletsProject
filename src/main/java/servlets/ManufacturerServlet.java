@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ManufacturerServlet extends HttpServlet {
 
-    private ManufacturerDAO manufacturerDAO;
+    private final ManufacturerDAO manufacturerDAO;
 
     public ManufacturerServlet() {
         manufacturerDAO = new ManufacturerDAOImplementation();
@@ -25,12 +25,16 @@ public class ManufacturerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doGet(request, response);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getParameter("createNewManufacturer") != null) {
+        if (request.getParameter("addManufacturerButton") != null) {
+            response.sendRedirect("addManufacturerForm.jsp");
+        }
+        else if (request.getParameter("deleteManufacturerButton") != null) {
+            response.sendRedirect("deleteManufacturerForm.jsp");
+        }
+        else if (request.getParameter("editManufacturerButton") != null) {
+            response.sendRedirect("editManufacturerForm.jsp");
+        }
+        else if (request.getParameter("createNewManufacturer") != null) {
             insertManufacturer(request, response);
         }
     }

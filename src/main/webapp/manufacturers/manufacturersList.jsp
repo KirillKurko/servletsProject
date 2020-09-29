@@ -5,7 +5,7 @@
 <%@ page import="DAO.implementation.ManufacturerDAOImplementation" %>
 <html>
 	<head>
-		<title>Souvenirs</title>
+		<title>Manufacturers</title>
 		<link rel="stylesheet" href="../resources/css/registrationPageStyle.css" type="text/css">
 	</head>
 	<body>
