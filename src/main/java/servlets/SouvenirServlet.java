@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class SouvenirServlet extends HttpServlet {
 
-    private SouvenirDAO souvenirDAO;
+    private final SouvenirDAO souvenirDAO;
 
     public SouvenirServlet() {
         souvenirDAO = new SouvenirDAOImplementation();
