@@ -40,6 +40,9 @@ public class ManufacturerServlet extends HttpServlet {
         else if (request.getParameter("deleteManufacturer") != null) {
             deleteManufacturer(request, response);
         }
+        else if (request.getParameter("editManufacturer") != null) {
+            updateManufacturer(request, response);
+        }
     }
 
     private void insertManufacturer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,25 +58,15 @@ public class ManufacturerServlet extends HttpServlet {
         manufacturerDAO.deleteManufacturer(id);
         response.sendRedirect("manufacturersList.jsp");
     }
-//
-//    private void editSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        Souvenir souvenir = souvenirDAO.selectSouvenir(id);
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("addSouvenirForm.jsp");
-//        request.setAttribute("souvenir", souvenir);
-//        requestDispatcher.forward(request, response);
-//    }
-//
-//    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        String name = request.getParameter("name");
-//        String manufacturerEmail = request.getParameter("manufacturerEmail");
-//        float price = Float.parseFloat(request.getParameter("price"));
-//        int manufacturerID = Integer.parseInt(request.getParameter("manufacturerID"));
-//        Souvenir souvenir = new Souvenir(id, name, manufacturerEmail, price, manufacturerID);
-//        souvenirDAO.updateSouvenir(souvenir);
-//        response.sendRedirect("list");
-//    }
+
+    private void updateManufacturer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String country = request.getParameter("country");
+        Manufacturer manufacturer = new Manufacturer(id, name, country);
+        manufacturerDAO.updateManufacturer(manufacturer);
+        response.sendRedirect("manufacturersList.jsp");
+    }
 //
 //    private void selectAllSouvenirs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        List<Souvenir> souvenirs = souvenirDAO.selectAllSouvenirs();
