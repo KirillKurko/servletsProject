@@ -7,7 +7,7 @@ public class DatabaseUtility {
     private static final String jdbcDriver  = "com.mysql.jdbc.Driver";
     private static final String jdbcURL =  "jdbc:mysql://localhost/Souvenirs";
     private static final String jdbcUserame = "root";
-    private static final String jdbcPassword = "12qazwsxEDC";
+    private static final String jdbcPassword = "12qazwsx";
 
     public static Connection getConnection() {
         Connection connection = null;
