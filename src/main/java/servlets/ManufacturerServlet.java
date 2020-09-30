@@ -49,6 +49,7 @@ public class ManufacturerServlet extends HttpServlet {
 
     private void deleteManufacturer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+        manufacturerDAO.deleteManufacturerSouvenirs(id);
         manufacturerDAO.deleteManufacturer(id);
         response.sendRedirect("manufacturersList.jsp");
     }
@@ -67,11 +68,4 @@ public class ManufacturerServlet extends HttpServlet {
         manufacturerDAO.updateManufacturer(manufacturer);
         response.sendRedirect("manufacturersList.jsp");
     }
-//
-//    private void selectAllSouvenirs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        List<Souvenir> souvenirs = souvenirDAO.selectAllSouvenirs();
-//        request.setAttribute("souvenirs", souvenirs);
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("souvenirsList.jsp");
-//        requestDispatcher.forward(request, response);
-//    }
 }
