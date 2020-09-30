@@ -28,6 +28,9 @@ public class SelectSouvenirsServlet extends HttpServlet {
         else if (request.getParameter("selectByID") != null) {
             selectByID(request, response);
         }
+        else if (request.getParameter("selectByPrice") != null) {
+            selectByPrice(request, response);
+        }
     }
 
     private void selectAllSouvenirs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,6 +43,14 @@ public class SelectSouvenirsServlet extends HttpServlet {
     private void selectByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("value"));
         ArrayList<Souvenir> souvenirs = new ArrayList<>(souvenirDAO.selectSouvenir(id));
+        request.setAttribute("souvenirs", souvenirs);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("souvenirsList.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    private void selectByPrice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        double price = Double.parseDouble(request.getParameter("value"));
+        ArrayList<Souvenir> souvenirs = new ArrayList<>(souvenirDAO.selectSouvenirsByPrice(price));
         request.setAttribute("souvenirs", souvenirs);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("souvenirsList.jsp");
         requestDispatcher.forward(request, response);
