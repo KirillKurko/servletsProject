@@ -1,0 +1,46 @@
+html {
+    height: 100%;
+}
+
+table.content-table {
+    width:70%;
+    margin-top: 10%;
+    margin-left:15%;
+    margin-right:15%;
+}
+
+.content-table {
+    font-family: "Roboto", sans-serif;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+    background-color: #43A047;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #f3f3f3;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #f3f3f3;
+}

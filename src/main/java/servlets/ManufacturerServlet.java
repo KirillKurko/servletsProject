@@ -25,16 +25,7 @@ public class ManufacturerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getParameter("addManufacturerButton") != null) {
-            response.sendRedirect("addManufacturerForm.jsp");
-        }
-        else if (request.getParameter("deleteManufacturerButton") != null) {
-            response.sendRedirect("deleteManufacturerForm.jsp");
-        }
-        else if (request.getParameter("editManufacturerButton") != null) {
-            response.sendRedirect("editManufacturerForm.jsp");
-        }
-        else if (request.getParameter("createNewManufacturer") != null) {
+        if (request.getParameter("createNewManufacturer") != null) {
             insertManufacturer(request, response);
         }
         else if (request.getParameter("deleteManufacturer") != null) {
@@ -43,9 +34,12 @@ public class ManufacturerServlet extends HttpServlet {
         else if (request.getParameter("editManufacturer") != null) {
             updateManufacturer(request, response);
         }
+        else if (request.getParameter("deleteSouvenirs") != null) {
+            deleteManufacturerSouvenirs(request, response);
+        }
     }
 
-    private void insertManufacturer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void insertManufacturer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String country = request.getParameter("country");
         Manufacturer manufacturer = new Manufacturer(name, country);
@@ -53,13 +47,19 @@ public class ManufacturerServlet extends HttpServlet {
         response.sendRedirect("manufacturersList.jsp");
     }
 
-    private void deleteManufacturer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void deleteManufacturer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         manufacturerDAO.deleteManufacturer(id);
         response.sendRedirect("manufacturersList.jsp");
     }
 
-    private void updateManufacturer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void deleteManufacturerSouvenirs(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        manufacturerDAO.deleteManufacturerSouvenirs(id);
+        response.sendRedirect("manufacturersList.jsp");
+    }
+
+    private void updateManufacturer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String country = request.getParameter("country");

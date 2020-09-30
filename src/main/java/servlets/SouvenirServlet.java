@@ -21,16 +21,7 @@ public class SouvenirServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getParameter("addSouvenirButton") != null) {
-            response.sendRedirect("addSouvenirForm.jsp");
-        }
-        else if (request.getParameter("deleteSouvenirButton") != null) {
-            response.sendRedirect("deleteSouvenirForm.jsp");
-        }
-        else if (request.getParameter("editSouvenirButton") != null) {
-            response.sendRedirect("editSouvenirForm.jsp");
-        }
-        else if (request.getParameter("createSouvenir") != null) {
+        if (request.getParameter("createSouvenir") != null) {
             insertSouvenir(request, response);
         }
         else if (request.getParameter("deleteSouvenir") != null) {

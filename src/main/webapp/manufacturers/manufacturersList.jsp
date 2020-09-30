@@ -7,17 +7,15 @@
 	<head>
 		<title>Manufacturers</title>
 		<link rel="stylesheet" href="../resources/css/registrationPageStyle.css" type="text/css">
+		<link rel="stylesheet" href="../resources/css/toolbar.css" type="text/css">
+		<link rel="stylesheet" href="../resources/css/table.css" type="text/css">
 	</head>
 	<body>
-		<div class="login-page">
-			<div class="form">
-				<form class="login-form" action="manufacturerServlet" method="post">
-					<button name="addManufacturerButton">Add</button>
-					<button name="deleteManufacturerButton">Delete</button>
-					<button name="searchManufacturerButton">Search</button>
-					<button name="editManufacturerButton">Edit</button>
-				</form>
-			</div>
+		<div class="topnav">
+			<a class="active" href="addManufacturerForm.jsp">Add</a>
+			<a class="active" href="deleteManufacturerForm.jsp">Delete</a>
+			<a class="active" href="editManufacturerForm.jsp">Edit</a>
+			<a style="float: right" class="active" href="../main.jsp">Back</a>
 		</div>
 		<table class="content-table">
 			<thead>

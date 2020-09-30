@@ -3,22 +3,21 @@
 <%@ page import="model.Souvenir" %>
 <%@ page import="DAO.interfaces.SouvenirDAO" %>
 <%@ page import="DAO.implementation.SouvenirDAOImplementation" %>
+<%@ page import="java.util.ArrayList" %>
 <html>
     <head>
         <title>Souvenirs</title>
         <link rel="stylesheet" href="../resources/css/registrationPageStyle.css" type="text/css">
+        <link rel="stylesheet" href="../resources/css/toolbar.css" type="text/css">
+        <link rel="stylesheet" href="../resources/css/table.css" type="text/css">
     </head>
     <body>
-         <div class="login-page">
-             <div class="form">
-                      <form class="login-form" action="souvenirServlet" method="post">
-                      <button name="addSouvenirButton">Add</button>
-                      <button name="deleteSouvenirButton">Delete</button>
-                      <button name="searchSouvenirButton">Search</button>
-                      <button name="editSouvenirButton">Edit</button>
-                  </form>
-             </div>
-         </div>
+        <div class="topnav">
+            <a class="active" href="addSouvenirForm.jsp">Add</a>
+            <a class="active" href="deleteSouvenirForm.jsp">Delete</a>
+            <a class="active" href="editSouvenirForm.jsp">Edit</a>
+            <a style="float: right" class="active" href="../main.jsp">Back</a>
+        </div>
          <table class="content-table">
              <thead>
              <tr>
@@ -30,8 +29,13 @@
              </tr>
              </thead>
              <tbody>
-             <% SouvenirDAO souvenirDAO = new SouvenirDAOImplementation();
-                 List<Souvenir> souvenirs = souvenirDAO.selectAllSouvenirs();
+             <%
+                 @SuppressWarnings("unchecked")
+                 List<Souvenir> souvenirs = (List<Souvenir>) request.getAttribute("souvenirs");
+                 if (souvenirs == null) {
+                     SouvenirDAO souvenirDAO = new SouvenirDAOImplementation();
+                     souvenirs = souvenirDAO.selectAllSouvenirs();
+                 }
                  for (Souvenir souvenir: souvenirs) { %>
              <tr>
                  <td><%=souvenir.getId()%></td>
