@@ -10,7 +10,7 @@ public interface SouvenirDAO {
 
     boolean updateSouvenir(Souvenir souvenir);
 
-    Souvenir selectSouvenir(int id);
+    List<Souvenir> selectSouvenir(int id);
 
     List<Souvenir> selectAllSouvenirs();
 

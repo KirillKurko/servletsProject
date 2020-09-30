@@ -37,7 +37,7 @@
 
   <servlet>
     <servlet-name>SouvenirServlet</servlet-name>
-    <servlet-class>servlets.SouvenirServlet</servlet-class>
+    <servlet-class>servlets.souvenirServlets.SouvenirServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -65,11 +65,19 @@
     <url-pattern>/manufacturers/manufacturerServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>SelectSouvenirsServlet</servlet-name>
+    <servlet-class>servlets.souvenirServlets.SelectSouvenirsServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.htm</url-pattern>
-    <url-pattern>*.css</url-pattern>
-    <url-pattern>*.js</url-pattern>
+    <servlet-name>SelectSouvenirsServlet</servlet-name>
+    <url-pattern>/selectSouvenirsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>SelectSouvenirsServlet</servlet-name>
+    <url-pattern>/souvenirs/selectSouvenirsServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

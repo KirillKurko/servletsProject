@@ -1,15 +1,12 @@
-package servlets;
+package servlets.souvenirServlets;
 
 import DAO.implementation.SouvenirDAOImplementation;
 import DAO.interfaces.SouvenirDAO;
 import model.Souvenir;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class SouvenirServlet extends HttpServlet {
 
@@ -20,7 +17,7 @@ public class SouvenirServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request.getParameter("createSouvenir") != null) {
             insertSouvenir(request, response);
         }
@@ -32,7 +29,7 @@ public class SouvenirServlet extends HttpServlet {
         }
     }
 
-    private void insertSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void insertSouvenir(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String manufacturerEmail = request.getParameter("manufacturerEmail");
         float price = Float.parseFloat(request.getParameter("price"));
@@ -42,13 +39,13 @@ public class SouvenirServlet extends HttpServlet {
         response.sendRedirect("souvenirsList.jsp");
     }
 
-    private void deleteSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void deleteSouvenir(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         souvenirDAO.deleteSouvenir(id);
         response.sendRedirect("souvenirsList.jsp");
     }
 
-    private void updateSouvenir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void updateSouvenir(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String manufacturerEmail = request.getParameter("manufacturerEmail");
@@ -57,12 +54,5 @@ public class SouvenirServlet extends HttpServlet {
         Souvenir souvenir = new Souvenir(id, name, manufacturerEmail, price, manufacturerID);
         souvenirDAO.updateSouvenir(souvenir);
         response.sendRedirect("souvenirsList.jsp");
-    }
-
-    private void selectAllSouvenirs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ArrayList<Souvenir> souvenirs = new ArrayList<>(souvenirDAO.selectAllSouvenirs());
-        request.setAttribute("souvenirs", souvenirs);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("souvenirsList.jsp");
-        requestDispatcher.forward(request, response);
     }
 }

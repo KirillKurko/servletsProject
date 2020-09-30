@@ -16,6 +16,7 @@
             <a class="active" href="addSouvenirForm.jsp">Add</a>
             <a class="active" href="deleteSouvenirForm.jsp">Delete</a>
             <a class="active" href="editSouvenirForm.jsp">Edit</a>
+            <a class="active" href="selectSouvenirsForm.jsp">Select</a>
             <a style="float: right" class="active" href="../main.jsp">Back</a>
         </div>
          <table class="content-table">
