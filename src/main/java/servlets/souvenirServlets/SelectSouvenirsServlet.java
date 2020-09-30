@@ -22,14 +22,17 @@ public class SelectSouvenirsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (request.getParameter("selectAll") != null) {
-            selectAllSouvenirs(request, response);
-        }
-        else if (request.getParameter("selectByID") != null) {
+        if (request.getParameter("selectByID") != null) {
             selectByID(request, response);
         }
         else if (request.getParameter("selectByPrice") != null) {
             selectByPrice(request, response);
+        }
+        else if (request.getParameter("selectByCountry") != null) {
+            selectByCountry(request, response);
+        }
+        else {
+            selectAllSouvenirs(request, response);
         }
     }
 
@@ -51,6 +54,14 @@ public class SelectSouvenirsServlet extends HttpServlet {
     private void selectByPrice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         double price = Double.parseDouble(request.getParameter("value"));
         ArrayList<Souvenir> souvenirs = new ArrayList<>(souvenirDAO.selectSouvenirsByPrice(price));
+        request.setAttribute("souvenirs", souvenirs);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("souvenirsList.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    private void selectByCountry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String country = request.getParameter("value");
+        ArrayList<Souvenir> souvenirs = new ArrayList<>(souvenirDAO.selectSouvenirsByCountry(country));
         request.setAttribute("souvenirs", souvenirs);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("souvenirsList.jsp");
         requestDispatcher.forward(request, response);
